@@ -1,0 +1,35 @@
+html{
+    background-color: rgb(211, 211, 211);
+}
+body {
+        display: flex;
+        justify-content: center; /* Centra horizontalmente */
+        align-items: center; /* Centra verticalmente */
+        border: 10px solid blue;
+        padding: 10px ;
+    }
+.Busqueda{
+    border: 50px solid blue;
+    border-radius: 5%;
+    box-shadow: 5px 5px 5px white;
+    display: flex;
+    align-items: center;
+}
+.texto{
+    background-color: aquamarine;
+}
+.Expandible{
+    background-color: aqua;
+}
+.Boton{
+    background-color: aquamarine;
+}
+footer {
+    /* Tus estilos específicos para el footer aquí */
+
+    position: fixed;
+    bottom: 0;
+    left: 10;
+    color: rgb(0, 0, 0);
+    text-shadow: 2px 2px rgb(255, 255, 255);
+}
