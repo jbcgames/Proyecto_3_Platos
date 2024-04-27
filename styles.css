@@ -60,15 +60,7 @@ body {
     background-color: aquamarine;
     margin: auto;
 }
-footer {
-    /* Tus estilos específicos para el footer aquí */
 
-    position: fixed;
-    bottom: 10;
-    left: 50;
-    color: rgb(0, 0, 0);
-    text-shadow: 2px 2px rgb(255, 255, 255);
-}
 .container{
     border-radius: 5%;
     box-shadow: 5px 5px 5px white;
