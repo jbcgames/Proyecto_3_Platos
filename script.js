@@ -47,7 +47,7 @@ async function obtenerDatoFinales(url) {
 
     for(let i = 0; i < instructions.length; i++) {
         if(instructions[i] !== '') {
-            numberedInstructions += (i + 1) + '. ' + instructions[i] + '<br>';
+            numberedInstructions += instructions[i] + '<br> <br>';
         }
     }
 
@@ -85,20 +85,7 @@ async function obtenerDatosComida(url) {
         contError.style.display= "block";
     }
   }
-async function obtenerDatosCategoria(url) {
-    const datos = await consultarApiComida(url);
-    const contError = document.querySelector(".error_validacion");
-    let nombreComida = document.querySelector(".trial");
-    try{
-      console.log(datos.meals[0].strMeal);
-      contError.style.display= "none";
-    }catch (error){
-      console.error('ingrese otro dato');
-      const contError = document.querySelector(".error_validacion");
-      console.log(contError.value);
-      contError.style.display= "block";
-    }
-  }
+
 async function obtenerDatosIngrediente(url) {
     const datos = await consultarApiComida(url);
     const info= document.querySelector(".t_validacion");
@@ -111,19 +98,46 @@ async function obtenerDatosIngrediente(url) {
     } 
     try{
       console.log(datos.meals[0].strArea);
-      contError.style.display= "none";;
-    try{for(let i = 0; i<=17; i++) {
-      let plate = datos.meals[i].strMeal;
-      let imagen= datos.meals[i].strMealThumb;
-      console.log(plate);
-      let pElement = document.createElement('p');
-      let imgElement = document.createElement('img');
-      imgElement.src=imagen;
-      pElement.textContent = plate;
-      opcionesDiv.appendChild(pElement);
-      opcionesDiv.appendChild(imgElement);
-    }}catch{}
+      contError.style.display= "none";
+ 
 
+      let imgSeleccionada;
+
+      try {
+          for(let i = 0; i <= 17; i++) {
+              let plate = datos.meals[i].strMeal;
+              let imagen = datos.meals[i].strMealThumb;
+              console.log(plate);
+      
+              let plateDiv = document.createElement('div');
+              let pElement = document.createElement('p');
+              let imgElement = document.createElement('img');
+      
+              imgElement.src = imagen;
+              pElement.textContent = plate;
+      
+              imgElement.addEventListener('click', function() {
+                  if(imgSeleccionada) {
+                      imgSeleccionada.style.border = '';
+                  }
+      
+                  this.style.border = '3px solid red';
+                  
+                  b_conf.style.display="block";
+                  
+                  imgSeleccionada = this;
+      
+                  comida = plate;
+              });
+      
+              plateDiv.appendChild(pElement);
+              plateDiv.appendChild(imgElement);
+      
+              opcionesDiv.appendChild(plateDiv);
+          }
+      } catch {}
+
+    
     }catch (error){
       c_img.style.display="none";
         info.style.display="none";
@@ -131,20 +145,6 @@ async function obtenerDatosIngrediente(url) {
         console.error('ingrese otro dato');
         console.log(contError.value);
         contError.style.display= "block";
-    }
-  }
-async function obtenerDatosNacionalidad(url) {
-    const datos = await consultarApiComida(url);
-    const contError = document.querySelector(".error_validacion");
-    let nombreComida = document.querySelector(".trial");
-    try{
-      console.log(datos.meals[0].strMeal);
-      contError.style.display= "none";
-    }catch (error){
-      console.error('ingrese otro dato');
-      const contError = document.querySelector(".error_validacion");
-      console.log(contError.value);
-      contError.style.display= "block";
     }
   }
 const searchButton = document.querySelector(".Busqueda button");
@@ -158,13 +158,19 @@ searchVolver.addEventListener("click", () => {window.location.href = '/index.htm
 try{
   const searchSeleccionSi = document.querySelector(".b_si");
   const searchSeleccionNo = document.querySelector(".b_no");
+  const ListTry= document.querySelector(".Expandible");
+
+ListTry.addEventListener("click", () => {
+    const contError = document.querySelector(".error_validacion");
+    contError.style.display= "none";
+  });
+
 searchSeleccionSi.addEventListener("click", () => {window.location.href = '/resultado.html?texto=' + encodeURIComponent(comida);});
 
 searchSeleccionNo.addEventListener("click", () => {
   const info= document.querySelector(".t_validacion");
   const c_img =document.querySelector(".imagen_comida");
   c_img.style.display="none";
-  const contError = document.querySelector(".error_validacion");
   const b_conf =document.querySelector(".boton_seleccion");
   info.style.display="none";
   b_conf.style.display="none";
@@ -179,10 +185,14 @@ searchButton.addEventListener("click", () => {
     const selectedText = selectedOption.textContent;
     const b_conf =document.querySelector(".boton_seleccion");
     const c_img =document.querySelector(".imagen_comida");
+    let opcionesDiv = document.querySelector('.Opciones');
+    while(opcionesDiv.firstChild) {
+      opcionesDiv.removeChild(opcionesDiv.firstChild);
+    } 
     
     c_img.style.display="none";
-        info.style.display="none";
-        b_conf.style.display="none";
+    info.style.display="none";
+    b_conf.style.display="none";
     let apiUrl;
 
     switch (selectedValue) {
@@ -214,7 +224,7 @@ searchButton.addEventListener("click", () => {
         console.log(apiUrl)
         const url3 = `${apiUrl}${nombreCategoria}`;
         console.log(url3);
-        obtenerDatosCategoria(url3);
+        obtenerDatosIngrediente(url3);
       break;
     case "opcion4":
       apiUrl = apiUrlNacionalidad; 
@@ -224,7 +234,7 @@ searchButton.addEventListener("click", () => {
       console.log(apiUrl)
       const url4 = `${apiUrl}${nombreNacionalidad}`;
       console.log(url4);
-      obtenerDatosNacionalidad(url4);
+      obtenerDatosIngrediente(url4);
       break;
 
     default:

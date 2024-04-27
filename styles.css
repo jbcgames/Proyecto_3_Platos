@@ -95,13 +95,13 @@ footer {
     flex-wrap: wrap;
 }
 
-.Opciones p {
+.Opciones div {
     flex: 1 0 25%; 
+    padding-right: 10px;
+    padding-bottom: 50px;
 }
-.Opciones img{
-    height: 20%;
-    width: 20%;
-    padding-top: 10px;
-    padding-bottom: 10px;
+.Opciones div img{
+    height: 75%;
+    width: 75%;
     border-radius: 20%;
 }
