@@ -9,27 +9,99 @@ body {
         padding: 10px ;
     }
 .Busqueda{
-    border: 50px solid blue;
+    
     border-radius: 5%;
     box-shadow: 5px 5px 5px white;
+    padding: 20px;
+    padding-left: auto;
+    padding-right: auto;
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    max-width: 470px;
+    background: linear-gradient(135deg, #00feba, #5b548a);
+    border-radius: 20px;
+    flex:1;
+    text-align: center;
+}
+.validacion{
+    color: white;
+    text-shadow: 2px 2px 2px black;
+}
+.imagen_comida{
+    display: none;
+    height: 50%;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+    border-radius: 20%;
+}
+.error_validacion{
+    display: none;
+}
+.t_validacion{
+    display: none;
+}
+.boton_seleccion{
+    display:none;
 }
 .texto{
+    flex:1;
     background-color: aquamarine;
 }
 .Expandible{
+    margin-top: 5px;
+    margin-left: auto;
+    margin-right: 15%;
     background-color: aqua;
 }
 .Boton{
     background-color: aquamarine;
+    margin: auto;
 }
 footer {
     /* Tus estilos específicos para el footer aquí */
 
     position: fixed;
-    bottom: 0;
-    left: 10;
+    bottom: 10;
+    left: 50;
     color: rgb(0, 0, 0);
     text-shadow: 2px 2px rgb(255, 255, 255);
+}
+.container{
+    border-radius: 5%;
+    box-shadow: 5px 5px 5px white;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    max-width: 470px;
+    background: linear-gradient(135deg, #00feba, #5b548a);
+    border-radius: 20px;
+    flex:1;
+    text-align: left;
+}
+.imagen_referencia{
+    height: 50%;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+    border-radius: 20%;
+}
+.Opciones {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.Opciones p {
+    flex: 1 0 25%; 
+}
+.Opciones img{
+    height: 20%;
+    width: 20%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 20%;
 }

@@ -10,17 +10,28 @@
       <body>
 
         <div class="Busqueda">
-            <p class="trial">trial</p>
-            <input type="text" class="texto" placeholder="Escribe aquí">
-            <button class="Boton"> <img src="https://cdn-icons-png.flaticon.com/512/64/64673.png" alt="Descripción de la imagen" height="15" width="15"></button>
-            <select class="Expandible" >
-                <option value="opcion1">Nombre del plato</option>
-                <option value="opcion2">Ingrediente Principal</option>
-                <option value="opcion3">Categoria</option>
-                <option value="opcion4">Area</option>
-            </select>
-              
-        </div>
+            
+            <div class="Entrada">
+              <input type="text" class="texto" placeholder="Escribe aquí">
+              <button class="Boton"> <img src="https://cdn-icons-png.flaticon.com/512/64/64673.png" alt="Descripción de la imagen" height="15" width="15"></button>
+            </div>
+           <div class="seleccion"> <select class="Expandible" >
+            <option value="opcion1">Nombre del plato</option>
+            <option value="opcion2">Ingrediente Principal</option>
+            <option value="opcion3">Categoria</option>
+            <option value="opcion4">Area</option>
+             </select>
+           </div>
+           <div class="Opciones"></div>
+           <div class="validacion">
+              <p class="t_validacion">Usted a seleccionado:</p>
+              <p class="error_validacion">El valor seleccionado no se encuentra en la base de datos</p>
+              <img src="" class="imagen_comida">
+          </div>
+          <div class="boton_seleccion">
+            <button class="b_si">Correcto</button>
+            <button class="b_no">Incorrecto</button>
+          </div>
            
         </body>
       <footer>
