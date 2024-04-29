@@ -166,7 +166,7 @@ const searchInput = document.querySelector(".Busqueda input");
 
 try{
 const searchVolver= document.querySelector(".volver");
-searchVolver.addEventListener("click", () => {window.location.href = '/index.html'});
+searchVolver.addEventListener("click", () => {window.location.href += '/index.html'});
 }catch{
 }
 try{
@@ -179,7 +179,7 @@ ListTry.addEventListener("click", () => {
     contError.style.display= "none";
   });
 
-searchSeleccionSi.addEventListener("click", () => {window.location.href = '/resultado.html?texto=' + encodeURIComponent(comida);});
+searchSeleccionSi.addEventListener("click", () => {window.location.href += '/resultado.html?texto=' + encodeURIComponent(comida);});
 
 searchSeleccionNo.addEventListener("click", () => {
   const info= document.querySelector(".t_validacion");
