@@ -34,6 +34,7 @@ async function obtenerDatoFinales(url) {
     ref_img.src = datos.meals[0].strMealThumb;
     console.log(ref_img.src)
     let meals = datos.meals[0];
+    ingredientes.innerHTML += "Ingredientes:"+"<br>"+"<br>";
     for(let i = 1;; i++) {
     let ingredient = meals["strIngredient" + i];
     if(ingredient === "") {
@@ -45,13 +46,13 @@ async function obtenerDatoFinales(url) {
     let instructions = datos.meals[0].strInstructions.split('\r\n');
     let numberedInstructions = '';
 
-    for(let i = 0; i < instructions.length; i++) {
+    for(let i = 1; i < instructions.length; i++) {
         if(instructions[i] !== '') {
             numberedInstructions += instructions[i] + '<br> <br>';
         }
     }
-
-receta.innerHTML = numberedInstructions;
+receta.innerHTML += "Pasos:"+"<br><br>"
+receta.innerHTML += numberedInstructions;
 
   }catch{
     console.log("pagina origen");
@@ -63,6 +64,7 @@ async function obtenerDatosComida(url) {
     const info= document.querySelector(".t_validacion");
     const contError = document.querySelector(".error_validacion");
     const b_conf =document.querySelector(".boton_seleccion");
+    const infor =document.querySelector(".informacion");
     const c_img =document.querySelector(".imagen_comida");
     
     let nombreComida = document.querySelector(".trial");
@@ -76,10 +78,12 @@ async function obtenerDatosComida(url) {
     c_img.src = datos.meals[0].strMealThumb;
     c_img.style.display="block";
     b_conf.style.display="block";
+    infor.style.display="none";
     }catch (error){
         c_img.style.display="none";
         info.style.display="none";
         b_conf.style.display="none";
+        infor.style.display="none";
         console.error('ingrese otro dato');
         console.log(contError.value);
         contError.style.display= "block";
@@ -90,6 +94,7 @@ async function obtenerDatosIngrediente(url) {
     const datos = await consultarApiComida(url);
     const info= document.querySelector(".t_validacion");
     const b_conf =document.querySelector(".boton_seleccion");
+    const infor =document.querySelector(".informacion");
     const c_img =document.querySelector(".imagen_comida");
     const contError = document.querySelector(".error_validacion");
     let opcionesDiv = document.querySelector('.Opciones');
@@ -104,8 +109,16 @@ async function obtenerDatosIngrediente(url) {
       let imgSeleccionada;
 
       try {
+          infor.style.display="block";
           for(let i = 0; i <= 17; i++) {
               let plate = datos.meals[i].strMeal;
+
+              let words = plate.split(' ');
+
+              if (words.length > 3) {
+                  plate = words.slice(0, 3).join(' ');
+              }
+
               let imagen = datos.meals[i].strMealThumb;
               console.log(plate);
       
@@ -141,6 +154,7 @@ async function obtenerDatosIngrediente(url) {
     }catch (error){
       c_img.style.display="none";
         info.style.display="none";
+        infor.style.display="none";
         b_conf.style.display="none";
         console.error('ingrese otro dato');
         console.log(contError.value);
@@ -172,9 +186,15 @@ searchSeleccionNo.addEventListener("click", () => {
   const c_img =document.querySelector(".imagen_comida");
   c_img.style.display="none";
   const b_conf =document.querySelector(".boton_seleccion");
+  const infor =document.querySelector(".informacion");
   info.style.display="none";
   b_conf.style.display="none";
+  infor.style.display="none";
   searchInput.value = "";
+  let opcionesDiv = document.querySelector('.Opciones');
+    while(opcionesDiv.firstChild) {
+      opcionesDiv.removeChild(opcionesDiv.firstChild);
+    } 
 });
 
 searchButton.addEventListener("click", () => {
@@ -183,6 +203,7 @@ searchButton.addEventListener("click", () => {
     const selectedOption = selectElement.options[selectElement.selectedIndex];
     const selectedValue = selectedOption.value;
     const selectedText = selectedOption.textContent;
+    const infor =document.querySelector(".informacion");
     const b_conf =document.querySelector(".boton_seleccion");
     const c_img =document.querySelector(".imagen_comida");
     let opcionesDiv = document.querySelector('.Opciones');
@@ -193,6 +214,7 @@ searchButton.addEventListener("click", () => {
     c_img.style.display="none";
     info.style.display="none";
     b_conf.style.display="none";
+    infor.style.display="none";
     let apiUrl;
 
     switch (selectedValue) {
