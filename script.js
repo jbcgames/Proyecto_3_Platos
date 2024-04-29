@@ -1,11 +1,11 @@
 const apiUrlPlato =
-  "http://www.themealdb.com/api/json/v1/1/search.php?s=";
+  "https://www.themealdb.com/api/json/v1/1/search.php?s=";
 const apiUrlIngrediente =
-  "http://www.themealdb.com/api/json/v1/1/filter.php?i=";
+  "https://www.themealdb.com/api/json/v1/1/filter.php?i=";
 const apiUrlCategoria =
-  "http://www.themealdb.com/api/json/v1/1/filter.php?c=";
+  "https://www.themealdb.com/api/json/v1/1/filter.php?c=";
 const apiUrlNacionalidad =
-  "http://www.themealdb.com/api/json/v1/1/filter.php?a=";
+  "https://www.themealdb.com/api/json/v1/1/filter.php?a=";
 let params = new URLSearchParams(window.location.search);
 let texto = params.get('texto');
 console.log(texto);
